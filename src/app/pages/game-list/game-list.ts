@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { GameListLayoutComponent } from '../../components/game-list-layout/game-list-layout';
-import { Navbar } from '../../components/navbar/navbar';
+import { GameListLayoutComponent } from '../../components/layouts/game-list-layout/game-list-layout';
+import { Navbar } from '../../components/shared/navbar/navbar';
 
 @Component({
   selector: 'app-game-list',

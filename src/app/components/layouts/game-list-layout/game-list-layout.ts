@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GameService } from '../../services/game';
+import { GameService } from '../../../services/game';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
