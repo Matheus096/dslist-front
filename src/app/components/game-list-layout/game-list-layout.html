@@ -1,0 +1,7 @@
+<ul class="game-list">
+  <li *ngFor="let game of games" class="game-item">
+    {{ game.title }}
+  </li>
+</ul>
+
+<button class="btn-voltar" (click)="goToHome()">Voltar</button>

@@ -1,0 +1,47 @@
+/* Variáveis para cores e espaçamento para facilitar a manutenção */
+$primary-color: #4a90e2; 
+$text-color: #fff;  
+$nav-bg-color: #333; 
+$hover-color: #6aabff; 
+
+.app-header {
+  background-color: $nav-bg-color;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+  color: $text-color;
+  margin-bottom: 30px;
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;  
+    max-width: 1200px;
+    margin: 0 auto;  
+  }
+
+  .logo h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 2rem; 
+  }
+
+  .main-nav a {
+    text-decoration: none; 
+    color: $text-color;
+    font-weight: 500;
+    transition: color 0.3s ease; 
+
+    &:hover,
+    &.active {
+      color: $hover-color;
+    }
+  }
+}

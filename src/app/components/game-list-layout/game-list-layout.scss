@@ -1,0 +1,35 @@
+.game-list {
+  list-style: none;  
+  padding: 0; 
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;  
+}
+
+.game-item {
+  background-color: #f0f0f0; 
+  padding: 10px 15px; 
+  border-radius: 8px;  
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  font-weight: 500;
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-3px); 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    background-color: #e0e0e0;
+  }
+}
+
+.btn-voltar {
+  background-color: #6d8ca5; 
+  color: white;  
+  padding: 10px 20px;
+  border: none; 
+  border-radius: 5px; 
+  font-size: 16px; 
+  cursor: pointer; 
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
