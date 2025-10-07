@@ -1,47 +1,130 @@
-/* Variáveis para cores e espaçamento para facilitar a manutenção */
-$primary-color: #4a90e2; 
-$text-color: #fff;  
-$nav-bg-color: #333; 
-$hover-color: #6aabff; 
+// Variáveis para cores e tamanhos
+$primary-color: #3498db;
+$text-color: #333;
+$background-color: #fff;
+$shadow-color: rgba(0, 0, 0, 0.1);
+$mobile-breakpoint: 768px;
 
-.app-header {
-  background-color: $nav-bg-color;
-  padding: 1rem 2rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
-  color: $text-color;
-  margin-bottom: 30px;
+// Mixin para a transição
+@mixin transition($property) {
+    transition: $property 0.3s ease-in-out;
+}
 
-  .header-container {
+// Estilo do header (barra de navegação)
+.navbar {
     display: flex;
     justify-content: space-between;
-    align-items: center;  
-    max-width: 1200px;
-    margin: 0 auto;  
-  }
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: $background-color;
+    box-shadow: 0 2px 5px $shadow-color;
+    margin-bottom: 36px;
 
-  .logo h1 {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 600;
-  }
-
-  .main-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 2rem; 
-  }
-
-  .main-nav a {
-    text-decoration: none; 
-    color: $text-color;
-    font-weight: 500;
-    transition: color 0.3s ease; 
-
-    &:hover,
-    &.active {
-      color: $hover-color;
+    // Logo
+    .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: $primary-color;
+        text-decoration: none;
     }
-  }
+
+    // Campo de busca
+    .search-container {
+        display: flex;
+        @include transition(width);
+
+        input {
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            outline: none;
+            width: 360px;
+            @include transition(border-color);
+
+            &:focus {
+                border-color: $primary-color;
+            }
+        }
+
+        button {
+            background-color: $primary-color;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            padding: 0.6rem;
+            margin-left: -35px; // Posiciona o ícone
+            cursor: pointer;
+            width: 45px;
+            @include transition(background-color);
+
+            &:hover {
+                background-color: darken($primary-color, 10%);
+            }
+        }
+    }
+
+    // Links de navegação
+    .nav-links {
+        display: flex;
+        
+        a {
+            color: $text-color;
+            text-decoration: none;
+            padding: 0 1rem;
+            @include transition(color);
+            &:hover {
+                color: $primary-color;
+            }
+        }
+    }
+
+    // Botão de menu hambúrguer (oculto em desktop)
+    .menu-toggle {
+        display: none; // Esconde o botão por padrão
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: $text-color;
+    }
+}
+
+// Estilos para dispositivos móveis
+@media (max-width: $mobile-breakpoint) {
+    .navbar {
+        flex-wrap: wrap; // Permite que os itens se quebrem em nova linha
+        
+        // Esconde os links e mostra o botão
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        // Quando o menu está ativo
+        .nav-links.active {
+            display: flex;
+        }
+
+        // Mostra o botão de hambúrguer
+        .menu-toggle {
+            display: block;
+        }
+
+        // Reposiciona o campo de busca
+        .search-container {
+            order: 2; // Move a busca para a próxima linha
+            width: 100%;
+            margin-top: 1rem;
+            input {
+                width: 100%;
+            }
+        }
+
+        // Centraliza a logo no mobile
+        .logo {
+            order: 1;
+        }
+    }
 }

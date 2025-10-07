@@ -1,14 +1,29 @@
-<header class="app-header">
-  <div class="header-container">
-    <div class="logo">
-      <h1>DSList</h1>
+<header class="navbar">
+    <a href="#" class="logo">DSList</a>
+
+    <div class="search-container">
+        <input type="text" placeholder="Pesquisar...">
+        <button type="submit"><i class="bi bi-search"></i></button>
     </div>
-    <nav class="main-nav">
-      <ul>
-        <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
-        <li><a routerLink="/games" routerLinkActive="active">Games</a></li>
-        <li><a routerLink="/about" routerLinkActive="active">Sobre</a></li>
-      </ul>
+
+    <nav class="nav-links">
+        <a href="#">Batata</a>
+        <a href="#">Cachorro</a>
+        <a href="#">Pamonha</a>
+        <a href="#">Maracuja</a>
     </nav>
-  </div>
+    
+    <div class="menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <button type="button" class="btn btn-danger">Danger</button>
 </header>
+
+<script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+</script>
