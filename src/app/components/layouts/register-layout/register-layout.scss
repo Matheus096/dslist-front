@@ -1,0 +1,86 @@
+$primary-color: #4cafef;
+$secondary-color: #eef2f7;
+$text-color: #333;
+$border-radius: 10px;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+  background-color: white;
+  padding: 40px 30px;
+  border-radius: $border-radius;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.register-form {
+  h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: $primary-color;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+
+    label {
+      margin-bottom: 5px;
+      font-weight: 500;
+      color: $text-color;
+    }
+
+    input {
+      padding: 12px 15px;
+      border: 1px solid #ccc;
+      border-radius: $border-radius / 2;
+      font-size: 16px;
+      transition: 0.3s;
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 5px rgba(76, 175, 239, 0.5);
+      }
+    }
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background-color: $primary-color;
+    color: white;
+    font-size: 16px;
+    border-radius: $border-radius / 2;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+
+  .login-link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+
+    a {
+      color: $primary-color;
+      text-decoration: none;
+      font-weight: 500;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
