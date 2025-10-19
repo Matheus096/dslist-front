@@ -1,15 +1,17 @@
-<section class="container">
-    <form class="register-form">
-      <h2>Registrar</h2>
-      <div class="input-group">
+<div class="page-wrapper">
+  <section class="conteudo">
+    <form class="register-form" (ngSubmit)="register()">
+      <h2>REGISTRAR</h2>
+      <div class="input-grupo">
         <label for="name">Nome</label>
-        <input type="text" id="name" placeholder="Seu nome" required>
+        <input type="text" id="name" [(ngModel)]="username" name="username" placeholder="Seu nome" required>
       </div>
-      <div class="input-group">
+      <div class="input-grupo">
         <label for="password">Senha</label>
-        <input type="password" id="password" placeholder="Senha" required>
+        <input type="password" id="password" [(ngModel)]="password" name="password" placeholder="Senha" required>
       </div>
-      <button type="submit">Registrar</button>
-      <p class="login-link">Já tem uma conta? <a href="#">Entrar</a></p>
+      <button type="submit">REGISTRAR</button>
+      <p class="login-link">Já tem uma conta? <a routerLink="/login">Entre aqui!</a></p>
     </form>
-</section>
+  </section>
+</div>
