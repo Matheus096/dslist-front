@@ -1,1 +1,20 @@
-<p>login-layout works!</p>
+<div class="page-wrapper">
+  <section class="conteudo">
+    <form (ngSubmit)="login()" class="register-form">
+      <h2>LOGIN</h2>
+      <div class="input-grupo">
+        <label for="name">Nome</label>
+        <input type="text" [(ngModel)]="username" name="username" id="name" placeholder="Seu nome" required>
+      </div>
+      <div class="input-grupo">
+        <label for="password">Senha</label>
+        <input type="password" [(ngModel)]="password" name="password" id="password" placeholder="Senha" required>
+      </div>
+      <div class="options">
+        <a href="#" class="forgot-password">Esqueceu a senha?</a>
+      </div>
+      <button type="submit">ENTRAR</button>
+      <p class="login-link">Não tem uma conta? <a routerLink="/register">Cadastre-se</a></p>
+    </form>
+  </section>
+</div>
