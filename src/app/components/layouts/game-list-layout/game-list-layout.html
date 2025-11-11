@@ -4,4 +4,21 @@
   </li>
 </ul>
 
+<form class="list-options" (change)="onListChange($event)">
+  <label>
+    <input type="radio" name="preferencia" value="1">
+    Aventura e RPG
+  </label><br>
+
+  <label>
+    <input type="radio" name="preferencia" value="2">
+    Jogos de plataforma
+  </label><br>
+
+  <label>
+    <input type="radio" name="preferencia" value="3">
+    Todos
+  </label>
+</form>
+
 <button class="btn-voltar" (click)="goToHome()">Voltar</button>
