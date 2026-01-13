@@ -11,6 +11,13 @@ import { AuthService } from '../../../auth/auth.service';
   styleUrl: './navbar.scss'
 })
 export class Navbar {
+  goToGamesStore() {
+    this.router.navigate(['/games-store']);
+  }
+
+  goToGames() {
+    this.router.navigate(['/games']);
+  }
 
   constructor(private authService: AuthService, private router: Router) {}
 
