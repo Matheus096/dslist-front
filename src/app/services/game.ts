@@ -10,7 +10,7 @@ export class GameService {
 
   constructor(private http: HttpClient) {}
 
-  // Lista geral de jogos
+  // Lista geral de jogos da loja
   getGames(): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl);
   }
@@ -24,5 +24,25 @@ export class GameService {
   getGamesByUserAndList(userId: number, listId: number): Observable<any[]> {
     const url = `http://localhost:8080/users/${userId}/lists/${listId}/games`;
     return this.http.get<any[]>(url);
+  }
+
+  // Criar novo jogo
+  createGame(gameDTO: any): Observable<any> {
+    return this.http.post<any>(this.baseUrl, gameDTO);
+  }
+
+  // Editar jogo pelo id
+  updateGame(id: number, gameDTO: any): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/${id}`, gameDTO);
+  }
+
+  // deletar jogo pelo id
+  deleteGame(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+
+  // Comprar jogo pelo id
+  buyGame(id: number): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/${id}/buy`, {});
   }
 }
