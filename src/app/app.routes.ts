@@ -4,12 +4,14 @@ import { GameList } from './pages/game-list/game-list';
 import { Login } from './pages/login/login';
 import { AuthGuard } from './auth/auth.guard';
 import { Register } from './pages/register/register';
+import { GameStore } from './pages/game-store/game-store';
 
 export const routes: Routes = [
   { path: 'login', component: Login },         // página de login
   { path: 'register', component: Register },   // página de registro
   { path: 'home', component: Home, canActivate: [AuthGuard] }, // home protegida
   { path: 'games', component: GameList, canActivate: [AuthGuard] }, // lista de jogos protegida
+  { path: 'games-store', component: GameStore }, // loja de jogos
   { path: '', redirectTo: 'register', pathMatch: 'full' }, // raiz redireciona para register
   { path: '**', redirectTo: 'register' } // qualquer rota desconhecida redireciona para register
 ];
