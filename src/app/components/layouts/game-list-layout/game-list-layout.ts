@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GameService } from '../../../services/game';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,11 +9,15 @@ import { Router } from '@angular/router';
   standalone: true,
   templateUrl: './game-list-layout.html',
   styleUrls: ['./game-list-layout.scss'],
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
 })
 export class GameListLayoutComponent implements OnInit {
   games: any[] = [];
   userId = 1; // (Exemplo) futuramente pode vir do AuthService
+
+  // Para criar e editar
+  newGameTitle = '';
+  editingGame: any = null;
 
   constructor(private gameService: GameService, private router: Router) {}
 
@@ -35,6 +40,43 @@ export class GameListLayoutComponent implements OnInit {
     this.gameService.getGamesByUserAndList(this.userId, listId).subscribe({
       next: (data) => this.games = data,
       error: (err) => console.error('Erro ao carregar jogos:', err)
+    });
+  }
+
+  // ---------- CREATE ----------
+  createGame() {
+
+    if (this.newGameTitle == ''){
+      window.alert("O título do jogo não pode ser vazio!");
+    }else{
+      const body = { 
+      title: this.newGameTitle,
+      userId: this.userId
+    };
+
+    this.gameService.createGame(body).subscribe(() => {
+      this.newGameTitle = '';
+      this.loadGames(3);
+    });
+    }
+  }
+
+  // ---------- UPDATE ----------
+  editGame(game: any) {
+    const novoTitulo = prompt("Novo título:", game.title);
+    if (!novoTitulo) return;
+
+    const updated = { ...game, title: novoTitulo };
+
+    this.gameService.updateGame(game.id, updated).subscribe(() => {
+      this.loadGames(3);
+    });
+  }
+
+  // ---------- DELETE ----------
+  deleteGame(id: number) {
+    this.gameService.deleteGame(id).subscribe(() => {
+      this.loadGames(3);
     });
   }
 }

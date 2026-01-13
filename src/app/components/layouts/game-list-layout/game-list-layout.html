@@ -1,8 +1,24 @@
-<ul class="game-list">
+<ul class="game-list"> 
   <li *ngFor="let game of games" class="game-item">
-    {{ game.title }}
+    
+    <img 
+      [src]="game.imgUrl" 
+      [alt]="game.title"
+      class="game-cover"
+    >
+
+    <div>
+      <button class="btn btn-warning" style="margin: 10px 8px;" (click)="editGame(game)">Editar</button>
+      <button class="btn btn-danger" (click)="deleteGame(game.id)">Excluir</button>
+    </div>
+    
   </li>
 </ul>
+
+<!-- CREATE GAME -->
+<h3>Criar novo jogo</h3>
+<input type="text" [(ngModel)]="newGameTitle" placeholder="Título do jogo">
+<button class="btn btn-primary" style="margin-left: 14px;" (click)="createGame()">Criar</button>
 
 <form class="list-options" (change)="onListChange($event)">
   <label>
