@@ -1,0 +1,286 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.game-title {
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin: 10px 0;
+    color: var(--text-primary);
+}
+
+/* Grid Principal */
+.product-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr; /* 2 colunas no desktop */
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.image-container img {
+    width: 100%;
+    height: 400px;
+    border-radius: 12px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.info-container {
+    margin: -20px -5px;
+    padding: 40px;
+    border-radius: 7px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+/* Estilos de Texto */
+.badge {
+    background: #0ea5e9;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.buy-card {
+    background: var(--card-bg);
+    padding: 5px;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+.price {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin: 10px 0;
+}
+
+.btn-buy {
+    width: 100%;
+    background: linear-gradient(90deg, #6366f1, #a855f7);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+.btn-buy:hover {
+    background: linear-gradient(90deg, #af60f8, #6a6cf6);
+}
+
+.reviews-section {
+    margin-top: 50px;
+}
+
+/* Comentários */
+/* Container Principal */
+.comment-box {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px 30px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 0px 3px 1px;
+    max-width: 2000px;
+    width: 95%;
+    margin: 10px auto;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.comment-input-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.comment-input-header h4 {
+    margin: 0;
+    color: #1e293b;
+    font-weight: 600;
+}
+
+/* Wrapper das Estrelas */
+.star-rating-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.star-rating-wrapper label {
+    font-size: 14px;
+    color: #64748b;
+}
+
+/* Lógica de Estrelas Interativas */
+.stars-interative {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.stars-interative input {
+    display: none;
+}
+
+.stars-interative label {
+    font-size: 24px;
+    color: #cbd5e1; 
+    cursor: pointer;
+    transition: color 0.2s;
+    margin: 0 2px;
+}
+
+.stars-interative label:hover,
+.stars-interative label:hover ~ label,
+.stars-interative input:checked ~ label {
+    color: #fbbf24; 
+}
+
+.modern-textarea {
+    width: 100%;
+    min-height: 120px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 15px;
+    color: #334155;
+    resize: vertical;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+.modern-textarea:focus {
+    outline: none;
+    background: #fff;
+    border-color: #94a3b8;
+    box-shadow: 0 0 0 4px rgba(226, 232, 240, 0.4);
+}
+
+/* Rodapé e Botão */
+.comment-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.comment-footer small {
+    color: #94a3b8;
+}
+
+.btn-primary-gradient {
+    background: linear-gradient(135deg, #419feb 0%, #3c71c5 100%);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, filter 0.2s;
+}
+
+.btn-primary-gradient:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
+/* Container da lista para alinhar com a largura da comment-box */
+.reviews-list {
+    max-width: 1100px; 
+    padding: 0 20px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 0px 3px 1px;
+    margin: 12px 40px;
+    border-radius: 8px;
+    margin-bottom: 60px;
+}
+
+.review-card-modern {
+    background: #ffffff;
+    border-bottom: 1px solid #f1f5f9; 
+    padding: 25px 0; 
+    margin-bottom: 10px;
+    transition: all 0.2s ease;
+}
+
+/* Topo do card: Nome, Estrelas e Data */
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-name {
+    font-weight: 700;
+    color: #1e293b;
+    font-size: 1.05rem;
+}
+
+.stars-static {
+    color: #fbbf24; 
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+}
+
+.review-date {
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+/* Texto do Comentário */
+.comment-text {
+    line-height: 1.6;
+    color: #475569;
+    margin: 0 0 15px 0;
+    font-size: 1rem;
+    max-width: 90%; 
+}
+
+.btn-useful {
+    background: #f8fafc; 
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.btn-useful:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    color: #1e293b;
+    transform: translateY(-1px);
+}
+
+.btn-useful .icon {
+    font-size: 1rem;
+}
+
+/* RESPONSIVIDADE (Mobile) */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: 1fr; /* Muda para 1 coluna no celular */
+    }
+    
+    .price { font-size: 1.5rem; }
+    
+    .image-container img {
+        height: auto;
+    }
+}

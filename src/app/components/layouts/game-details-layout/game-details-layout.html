@@ -1,0 +1,72 @@
+<div class="container">
+
+    <main class="product-grid">
+        <section class="image-container">
+            <img src="https://files.meiobit.com/wp-content/uploads/2019/08/20190809forza-horizon-4.jpg"
+                alt="Need for Speed Heat Car">
+        </section>
+
+        <section class="info-container">
+            <span class="badge">Corrida</span>
+            <h1 class="game-title"> {{ gameDetails.title}} </h1>
+            <p class="year">📅 2019</p>
+            <div class="rating">⭐⭐⭐⭐☆ <span>4.0 / 5.0</span></div>
+            <p class="description">Corridas ilegais noturnas e perseguições policiais.</p>
+
+            <div class="buy-card">
+                <p>Preço</p>
+                <h2 class="price">R$ 129,90</h2>
+                <button class="btn-buy">🛒 Adicionar à Biblioteca</button>
+            </div>
+        </section>
+    </main>
+
+    <section class="reviews-section">
+        <div class="comment-box">
+            <div class="comment-input-header">
+                <h4 style="font-weight: 400;">Deixe sua avaliação</h4>
+                <div class="star-rating-wrapper">
+                    <label>Sua nota:</label>
+                    <div class="stars-interative">
+                        <input type="radio" id="st5" name="fav_rating" value="5"><label for="st5">★</label>
+                        <input type="radio" id="st4" name="fav_rating" value="4"><label for="st4">★</label>
+                        <input type="radio" id="st3" name="fav_rating" value="3"><label for="st3">★</label>
+                        <input type="radio" id="st2" name="fav_rating" value="2"><label for="st2">★</label>
+                        <input type="radio" id="st1" name="fav_rating" value="1"><label for="st1">★</label>
+                    </div>
+                </div>
+            </div>
+
+            <textarea placeholder="O que você achou do jogo? Seu feedback ajuda a comunidade..."
+                class="modern-textarea"></textarea>
+
+            <div class="comment-footer">
+                <small>Respeite as diretrizes da comunidade.</small>
+                <button class="btn-primary-gradient">Comentar</button>
+            </div>
+        </div>
+
+        <div class="reviews-list">
+            <div class="review-card-modern">
+                <div class="card-top">
+                    <div class="user-info">
+                        <span class="user-name">João Silva</span>
+                        <span class="stars-static">★★★★★</span>
+                    </div>
+                    <span class="review-date">15 de Janeiro, 2024</span>
+                </div>
+
+                <p class="comment-text">
+                    Simplesmente incrível! Um dos melhores jogos que já joguei.
+                    A jogabilidade é fluida e os gráficos estão impecáveis.
+                </p>
+
+                <div class="card-actions">
+                    <button class="btn-useful">
+                        <span class="icon">👍</span> Útil (234)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
