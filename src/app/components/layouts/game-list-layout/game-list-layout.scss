@@ -1,8 +1,9 @@
 .game-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 24px;
-  padding: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 2fr));
+  gap: 16px 12px;
+  padding: 0px 128px;
+  margin-top: -5px;
 }
 
 .game-item {
@@ -23,8 +24,19 @@
 }
 
 .game-cover:hover {
-  transform: scale(1.05);
   box-shadow: 0 10px 28px rgba(0,0,0,0.5);
+}
+
+.card-container {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: pointer;
+  z-index: 0;
+
+  &:hover {
+    transform: scale(1.14); /* Aumenta o tamanho */
+    z-index: 100; /* Garante que fique por cima dos outros jogos */
+  }
 }
 
 /* Telas grandes (desktop wide) */
