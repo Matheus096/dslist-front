@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class GamesStoreLayoutComponent implements OnInit {
   games: any[] = [];
+  gameDetails: any;
 
   constructor(private gameService: GameService, private router: Router) {}
 
@@ -22,6 +23,10 @@ export class GamesStoreLayoutComponent implements OnInit {
 
   goToHome() {
     this.router.navigate(['/home']); // redireciona para a rota /home
+  }
+
+  goToGameDetails(gameId: number) {
+    this.router.navigate(['/game_details', gameId]); // redireciona para a rota /game/:id
   }
 
   loadGameStore(): void {
