@@ -1,104 +1,100 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
-$primary-color: #41b14d;
-$secondary-color: #eef2f7;
-$text-color: #333;
-$border-radius: 10px;
-
-* {
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.main-container {
+    background: radial-gradient(circle, #2c5e94 0%, #09131d 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-.page-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  height: 100vh;
-  background-color: $secondary-color;
-  padding-top: 11%;
-}
-
-.conteudo {
-  background-color: white;
-  padding: 40px 30px;
-  border-radius: $border-radius;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  width: 100%;
-  max-width: 400px;
-}
-
-.register-form {
-  h2 {
-    color: rgb(58, 189, 89);
+.title {
     text-align: center;
-    margin-bottom: 25px;
-  }
+    margin-top: 38px;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: #283355;
+}
 
-  .input-grupo {
+.register-card {
+    background: #fff;
+    width: 100%;
+    max-width: 870px;
+    display: flex;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    height: 590px;
+    margin-top: -60px;
+}
+
+.welcome-panel {
+    flex: 1;
+    background: linear-gradient(rgba(0, 80, 150, 0.4), rgba(0, 20, 40, 0.8)), 
+                url('https://raw.githubusercontent.com/Matheus096/dslist-images/refs/heads/main/resources/img_plano_de_fundo/high-resolution-gaming.jpg') center/cover;
+    color: white;
+    padding: 40px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 15px;
-
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 700;
-      color: #727272;
-      font-size: 14px;
-    }
-
-    input {
-      padding: 12px 15px;
-      border: 1px solid #ccc;
-      border-radius: $border-radius / 2;
-      font-size: 16px;
-      transition: 0.3s;
-
-      &:focus {
-        outline: none;
-        border-color: $primary-color;
-        box-shadow: 0 0 5px rgba(76, 175, 239, 0.5);
-      }
-    }
-  }
-
-  button {
-    margin-top: 18px;
-    width: 100%;
-    padding: 12px;
-    border: none;
-    background: linear-gradient(135deg, #46d85f, #179b3a);
-    color: white;
-    font-size: 16px;
-    border-radius: $border-radius / 2;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(2, 100, 31, 0.3);
-    transition: all 0.3s ease;
-
-    &:hover {
-      background: linear-gradient(135deg, #179a3a, #52e56b);
-      box-shadow: 0 4px 10px rgba(2, 67, 21, 0.3);
-      transform: translateY(-2px);
-    }
-  }
-
-  .login-link {
+    justify-content: flex-end;
     text-align: center;
-    margin-top: 30px;
+}
+
+.welcome-content h2 { font-size: 2rem; margin-bottom: 15px; }
+.welcome-content p { font-size: 0.9rem; opacity: 0.8; line-height: 1.5; margin-bottom: 40px; }
+
+.social-connect span { font-size: 0.7rem; letter-spacing: 1px; }
+.social-icons { margin-top: 15px; display: flex; justify-content: center; gap: 15px; }
+
+.icon { 
+    width: 35px; height: 35px; border-radius: 50%; background: #3b5998; 
+    color: white; display: flex; align-items: center; justify-content: center; text-decoration: none;
+}
+
+.icon.twitter { background: #55acee; }
+.icon.google { background: #dd4b39; }
+
+.form-panel {
+    flex: 1.2;
+    padding: 40px;
+    position: relative;
+}
+
+.register-form h1 { font-size: 2.5rem; margin-bottom: 30px; }
+
+.input-group { margin-top: 40px; border-bottom: 1px solid #ddd; }
+.input-group label { display: block; font-size: 0.75rem; color: #777; font-weight: bold; }
+
+.input-group input { 
+    width: 100%; border: none; padding: 10px 0; outline: none; font-size: 0.9rem; 
+}
+
+.btn-signup {
+    width: 100%;
+    background: linear-gradient(135deg, #4cafef, #0072ff);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 82px;
+}
+
+.btn-signup:hover { background: linear-gradient(135deg, #0058c4, #4093ca); }
+
+.login-link {
+    text-align: left;
+    color: #434343;
     font-size: 14px;
-    color: #777777;
-
-    a {
-      color: $primary-color;
-      text-decoration: none;
-      font-weight: 500;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
+    text-decoration: none;
+    font-weight: 400;
+    margin-top: 35px;
   }
+
+@media (max-width: 768px) {
+    .register-card { flex-direction: column; }
+    .welcome-panel { display: none; }
+    .form-panel { padding: 30px 20px; }
 }

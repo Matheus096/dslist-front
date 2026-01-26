@@ -1,17 +1,42 @@
-<div class="page-wrapper">
-  <section class="conteudo">
-    <form class="register-form" (ngSubmit)="register()">
-      <h2>REGISTRAR</h2>
-      <div class="input-grupo">
-        <label for="name">Nome</label>
-        <input type="text" id="name" [(ngModel)]="username" name="username" placeholder="Seu nome" required>
+<main class="main-container">
+  <div class="register-card">
+
+    <section class="welcome-panel">
+      <div class="welcome-content">
+        <h2>Bem vindo ao DSList</h2>
+        <p>Divirta-se Jogando muitoo, todos gostamos de jogar muitos jogos ebaaa. Oque está esperando ? cadastre
+          AGORA!!!</p>
+
+        <div class="social-connect">
+          <span>CONECTE-SE COM</span>
+          <div class="social-icons">
+            <a href="#" class="icon twitter"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="icon google"><i class="bi bi-google"></i></a>
+            <a href="#" class="icon facebook"><i class="bi bi-facebook"></i></a>
+          </div>
+        </div>
       </div>
-      <div class="input-grupo">
-        <label for="password">Senha</label>
-        <input type="password" id="password" [(ngModel)]="password" name="password" placeholder="Senha" required>
-      </div>
-      <button type="submit">REGISTRAR</button>
-      <p class="login-link">Já tem uma conta? <a routerLink="/login">Entre aqui!</a></p>
-    </form>
-  </section>
-</div>
+    </section>
+
+    <section class="form-panel">
+      <form class="register-form" (ngSubmit)="register()">
+        <h1 class="title">REGISTRAR</h1>
+
+        <div class="input-group">
+          <label for="name">NOME</label>
+          <input type="text" id="name" name="username" [(ngModel)]="username" placeholder="Entre com seu nome" required>
+        </div>
+
+        <div class="input-group">
+          <label for="password">SENHA</label>
+          <input type="password" id="password" name="password" [(ngModel)]="password" placeholder="********" required>
+        </div>
+
+        <div class="login-link">
+          <a>Já possui uma conta? <a routerLink="/login">Entre aqui!</a></a>
+        </div>
+        <button type="submit" class="btn-signup">REGISTRAR</button>
+      </form>
+    </section>
+  </div>
+</main>
