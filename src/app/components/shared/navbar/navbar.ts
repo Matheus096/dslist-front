@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../../auth/auth.service';
+import { AuthService } from '../../../services/auth/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -11,18 +11,26 @@ import { AuthService } from '../../../auth/auth.service';
   styleUrl: './navbar.scss'
 })
 export class Navbar {
-  goToGamesStore() {
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) {}
+
+  public goToGamesStore() {
     this.router.navigate(['/games-store']);
   }
 
-  goToGames() {
+  public goToGames() {
     this.router.navigate(['/games']);
   }
 
-  constructor(private authService: AuthService, private router: Router) {}
-
-  logout() {
+  public logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  onSearch(termo: string) {
+    this.router.navigate(['/games'], { 
+      queryParams: { search: termo },
+      relativeTo: this.route, 
+      queryParamsHandling: 'merge'
+    });
   }
 }

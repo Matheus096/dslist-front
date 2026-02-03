@@ -2,8 +2,8 @@
     <a href="#" class="logo">DSList</a>
 
     <div class="search-container">
-        <input type="text" placeholder="Pesquisar...">
-        <button type="submit"><i class="bi bi-search"></i></button>
+        <input #buscaInput type="text" placeholder="Pesquisar..." (keyup.enter)="onSearch(buscaInput.value)">
+        <button (click)="onSearch(buscaInput.value)" type="submit"><i class="bi bi-search"></i></button>
     </div>
 
     <nav class="nav-links">
