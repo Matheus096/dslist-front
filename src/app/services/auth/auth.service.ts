@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthModel } from '../../core/models/auth-resp-user/auth-resp-user.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -9,8 +10,8 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   // Envia requisição de login com username e password no body
-  login(username: string, password: string): Observable<any> {
-    return this.http.post<any>(this.apiUrl + '/login', { username, password });
+  login(username: string, password: string): Observable<AuthModel> {
+    return this.http.post<AuthModel>(this.apiUrl + '/login', { username, password });
   }
 
   // Envia requisição de registro com username e password no body

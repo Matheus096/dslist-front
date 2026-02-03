@@ -3,6 +3,7 @@ import { GameService } from '../../../services/game/game';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from '../../../services/user/user';
 
 @Component({
   selector: 'app-game-list-layout',
@@ -18,7 +19,7 @@ export class GameListLayoutComponent implements OnInit {
 
   newGameTitle = ''; // Para criar e editar jogos
 
-  constructor(private gameService: GameService, private router: Router) {}
+  constructor(private gameService: GameService, private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
     this.loadGames(this.listId); // carrega jogos da lista com ID 3 por padrão (Todos)
@@ -36,7 +37,7 @@ export class GameListLayoutComponent implements OnInit {
   }
 
   private loadGames(listId: number): void {
-    this.gameService.getGamesByUserAndList(this.userId, listId).subscribe({
+    this.userService.getGamesByUserAndList(this.userId, listId).subscribe({
       next: (data) => this.games = data,
       error: (err) => console.error('Erro ao carregar jogos:', err)
     });

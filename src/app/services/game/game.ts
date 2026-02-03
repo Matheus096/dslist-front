@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Game, GameMin } from '../../core/models/game/game.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +12,13 @@ export class GameService {
   constructor(private http: HttpClient) {}
 
   // Recebe lista geral de jogos da loja
-  getGames(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl);
+  getGames(): Observable<GameMin[]> {
+    return this.http.get<GameMin[]>(this.baseUrl);
   }
 
   // Recebe jogo por ID
-  getGameById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/${id}`);
-  }
-
-  // Recebe jogos de uma lista específica de um usuário
-  getGamesByUserAndList(userId: number, listId: number): Observable<any[]> {
-    const url = `http://localhost:8080/user/${userId}/lists/${listId}/games`;
-    return this.http.get<any[]>(url);
+  getGameById(id: number): Observable<Game> {
+    return this.http.get<Game>(`${this.baseUrl}/${id}`);
   }
 
   // Comprar jogo pelo id
