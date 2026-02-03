@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { GameService } from '../../../services/game';
-import { CommonModule } from '@angular/common';
+import { GameService } from '../../../services/game/game';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { StringUtils } from '../../../utils/string-utils';
 
 @Component({
   selector: 'app-games-store-layout',
   standalone: true,
   templateUrl: './games-store-layout.html',
   styleUrls: ['./games-store-layout.scss'],
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule],
 })
 export class GamesStoreLayoutComponent implements OnInit {
   games: any[] = [];
-  gameDetails: any;
 
   constructor(private gameService: GameService, private router: Router) {}
 
@@ -21,28 +20,22 @@ export class GamesStoreLayoutComponent implements OnInit {
     this.loadGameStore(); // carrega todos os jogos da loja
   }
 
-  goToHome() {
-    this.router.navigate(['/home']); // redireciona para a rota /home
-  }
-
-  goToGameDetails(gameId: number) {
-    this.router.navigate(['/game_details', gameId]); // redireciona para a rota /game/:id
-  }
-
-  loadGameStore(): void {
+  private loadGameStore(): void {
     this.gameService.getGames().subscribe({
       next: (data) => this.games = data,
       error: (err) => console.error('Erro ao carregar jogos:', err)
     });
   }
 
-  // ---------- BUY ----------
-  buyGame(id: number) {
-    this.gameService.buyGame(id).subscribe(() => {
-      window.alert("Jogo comprado com sucesso!");
-    }, (err) => {
-      console.error('Erro ao comprar jogo:', err);
-      window.alert("Erro ao comprar o jogo.");
-    });
+  public goToHome() {
+    this.router.navigate(['/home']); // redireciona para a rota /home
+  }
+
+  public goToGameDetailsByIdUrl(game: any) {
+    // 1. Gera o slug usando o título que vem do objeto
+    const slug = StringUtils.transformarEmSlug(game.title);
+
+    // 2. Navega passando o ID e o SLUG
+    this.router.navigate(['/game_details', game.id, slug]);
   }
 }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { GameService } from '../../../services/game';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { GameService } from '../../../services/game/game';
 import { ActivatedRoute } from '@angular/router';
+import { map, Subscription, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-game-details-layout',
@@ -8,11 +9,12 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './game-details-layout.html',
   styleUrl: './game-details-layout.scss'
 })
-export class GameDetailsLayoutComponent implements OnInit {
+export class GameDetailsLayoutComponent implements OnInit, OnDestroy {
 
   gameDetails: any;
+  private routeSub: Subscription = new Subscription();
 
-  constructor(private gameService: GameService, private route: ActivatedRoute) {}
+  constructor(private gameService: GameService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     window.scrollTo({
@@ -21,19 +23,35 @@ export class GameDetailsLayoutComponent implements OnInit {
       behavior: 'instant'
     });
 
-    this.route.paramMap.subscribe(params => {
-      const gameId = Number(params.get('id'));
-      
-      if (gameId) {
-        this.gameService.getGameById(gameId).subscribe({
-          next: (data) => {
-            this.gameDetails = data;
-            console.log('Detalhes do jogo:', data);
-          },
-          error: (err) => {
-            console.error('Erro ao carregar jogo:', err);
-          }
-        });
+    this.searchGameByIdUrl();
+  }
+
+  private searchGameByIdUrl(): void {
+  this.routeSub = this.route.paramMap.pipe(
+    map(params => Number(params.get('id'))),
+    switchMap(id => this.gameService.getGameById(id))
+  ).subscribe({
+    next: (data) => {
+      this.gameDetails = data;
+      console.log('Detalhes do jogo:', data);
+    },
+    error: (err) => console.error('Erro ao carregar jogo:', err)
+  });
+}
+
+  ngOnDestroy(): void {
+    this.routeSub.unsubscribe();
+  }
+
+  // Comprar jogo pelo ID
+  public buyGame(id: number) {
+    this.gameService.buyGame(id).subscribe({
+      next: (data) => {
+        window.alert(data.title + " comprado com sucesso!");
+      },
+      error: (err) => {
+        console.error('Erro ao comprar jogo:', err);
+        window.alert("Erro ao comprar o jogo.");
       }
     });
   }
