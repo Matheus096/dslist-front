@@ -8,10 +8,12 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
+  // Envia requisição de login com username e password no body
   login(username: string, password: string): Observable<any> {
     return this.http.post<any>(this.apiUrl + '/login', { username, password });
   }
 
+  // Envia requisição de registro com username e password no body
   register(username: string, password: string) {
     return this.http.post(this.apiUrl + '/register', { username, password }, { responseType: 'text' });
   }
