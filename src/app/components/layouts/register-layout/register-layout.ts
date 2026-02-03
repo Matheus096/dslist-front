@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../auth/auth.service';
+import { AuthService } from '../../../services/auth/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -18,7 +18,7 @@ export class RegisterComponentLayout {
   password: string = '';
   constructor(private authService: AuthService, private router: Router) {}
 
-  register() {
+  public register() {
     this.authService.register(this.username, this.password).subscribe({
       next: (res) => {
         alert(res);

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../auth/auth.service';
+import { AuthService } from '../../../services/auth/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -18,7 +18,7 @@ export class LoginComponentLayout {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  login() {
+  public login() {
     this.authService.login(this.username, this.password).subscribe({
       next: response => {
         const token = response.token;

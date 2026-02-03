@@ -10,11 +10,11 @@ import { Router } from '@angular/router';
 export class HomeComponentLayout {
   constructor(private router: Router) {}
 
-  goToGames() {
+  public goToGames() {
     this.router.navigate(['/games']); // redireciona para a rota /games
   }
 
-  title() {
+  public title() {
     return 'DSList!';
   }
 }
