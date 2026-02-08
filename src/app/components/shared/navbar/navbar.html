@@ -1,9 +1,24 @@
 <header class="navbar">
     <a href="#" class="logo">DSList</a>
 
-    <div class="search-container">
-        <input #buscaInput type="text" placeholder="Pesquisar..." (keyup.enter)="onSearch(buscaInput.value)">
-        <button (click)="onSearch(buscaInput.value)" type="submit"><i class="bi bi-search"></i></button>
+    @if (isFocus) {
+        <div class="overlay" (click)="toggleFocus(false, buscaInput)"></div>
+    }
+
+    <div class="search-container" [class.focused]="isFocus">
+        <input #buscaInput type="text" placeholder="Pesquisar..." (input)="onSearch(buscaInput.value)"
+            (focus)="toggleFocus(true)" (blur)="toggleFocus(false, buscaInput)" autocomplete="off">
+        <button (click)="onSearch(buscaInput.value)" type="submit"><i class="bi bi-search"></i></button>    
+        
+        <ul class="search-results" *ngIf="isFocus && (games$ | async) as games">
+            @for (game of games; track game.id) {
+            <li>
+                <a [routerLink]="['/game_details', game.id, getSlug(game.title)]" (click)="clearSearch(buscaInput)">
+                    {{ game.title }}
+                </a>
+            </li>
+            }
+        </ul>
     </div>
 
     <nav class="nav-links">
