@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
 import { GameList } from './pages/game-list/game-list';
 import { Login } from './pages/login/login';
-import { AuthGuard } from './services/auth/auth.guard';
+import { AuthGuard } from './services/api/auth/auth.guard';
 import { Register } from './pages/register/register';
 import { GameStore } from './pages/game-store/game-store';
 import { GameDetails } from './pages/game-details/game-details';

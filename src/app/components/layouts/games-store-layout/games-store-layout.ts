@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GameService } from '../../../services/game/game';
+import { GameService } from '../../../services/api/game/game';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StringUtils } from '../../../utils/string-utils';

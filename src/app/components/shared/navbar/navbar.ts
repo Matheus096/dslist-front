@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../../services/auth/auth.service';
+import { AuthService } from '../../../services/api/auth/auth.service';
 import { Router, ActivatedRoute, RouterModule } from '@angular/router';
-import { GameService } from '../../../services/game/game';
+import { GameService } from '../../../services/api/game/game';
 import { Subject, debounceTime, distinctUntilChanged, switchMap, of, Observable } from 'rxjs';
 import { Game } from '../../../core/models/game/game.model';
 import { StringUtils } from '../../../utils/string-utils';

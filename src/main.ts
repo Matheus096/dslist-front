@@ -3,7 +3,7 @@ import { App } from './app/app';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
-import { JwtInterceptor } from './app/services/auth/jwt.interceptor';
+import { JwtInterceptor } from './app/services/api/auth/jwt.interceptor';
 
 bootstrapApplication(App, {
   providers: [

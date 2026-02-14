@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { GameService } from '../../../services/game/game';
+import { GameService } from '../../../services/api/game/game';
 import { ActivatedRoute } from '@angular/router';
 import { map, Subscription, switchMap } from 'rxjs';
 
