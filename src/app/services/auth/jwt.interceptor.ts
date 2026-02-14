@@ -7,6 +7,13 @@ export class JwtInterceptor implements HttpInterceptor {
   constructor(private auth: AuthService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
+
+    const publicRoutes = ['/auth/login', '/auth/register'];
+
+    if (publicRoutes.some(route => req.url.includes(route))) {
+      return next.handle(req);
+    }
+
     const token = this.auth.getToken();
 
     // 🔹 Teste: log para verificar se o interceptor está sendo chamado
