@@ -31,6 +31,10 @@ export class GameService {
     return this.http.get<Game[]>(this.baseUrl, { params });
   }
 
+  // Recebe screenshots por ID do jogo
+  getScreenshotsById(id: number): Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:8080/api/rawg/games/${id}/screenshots/meu_bd`);
+  }
 
   
   // METODOS ABAIXO NAO ESTAO SENDO USADOS NO MOMENTO:

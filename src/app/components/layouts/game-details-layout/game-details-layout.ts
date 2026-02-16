@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GameService } from '../../../services/api/game/game';
 import { ActivatedRoute } from '@angular/router';
-import { map, Subscription, switchMap } from 'rxjs';
+import { map, Subscription, switchMap, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-game-details-layout',
@@ -12,6 +12,7 @@ import { map, Subscription, switchMap } from 'rxjs';
 export class GameDetailsLayoutComponent implements OnInit, OnDestroy {
 
   gameDetails: any;
+  gameScreenshots: any[] = [];
   private routeSub: Subscription = new Subscription();
 
   constructor(private gameService: GameService, private route: ActivatedRoute) { }
@@ -27,17 +28,28 @@ export class GameDetailsLayoutComponent implements OnInit, OnDestroy {
   }
 
   private searchGameByIdUrl(): void {
-  this.routeSub = this.route.paramMap.pipe(
-    map(params => Number(params.get('id'))),
-    switchMap(id => this.gameService.getGameById(id))
-  ).subscribe({
-    next: (data) => {
-      this.gameDetails = data;
-      console.log('Detalhes do jogo:', data);
-    },
-    error: (err) => console.error('Erro ao carregar jogo:', err)
-  });
-}
+    this.routeSub = this.route.paramMap.pipe(
+      map(params => Number(params.get('id'))),
+      switchMap(id => {
+
+        // O forkJoin executa as duas chamadas à api em paralelo:
+        return forkJoin({
+          details: this.gameService.getGameById(id),
+          screenshots: this.gameService.getScreenshotsById(id)
+        });
+
+      })
+    ).subscribe({
+      next: (res) => {
+        this.gameDetails = res.details;
+        this.gameScreenshots = res.screenshots.slice(-3);
+
+        console.log('Detalhes:', res.details);
+        console.log('Screenshots:', res.screenshots);
+      },
+      error: (err) => console.error('Erro ao carregar dados do jogo:', err)
+    });
+  }
 
   ngOnDestroy(): void {
     this.routeSub.unsubscribe();
