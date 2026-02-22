@@ -16,4 +16,9 @@ export class UserService {
     const url = `${this.baseUrl}/${userId}/lists/${listId}/games`;
     return this.http.get<User[]>(url);
   }
+
+  // Comprar jogo pelo id
+  buyGame(id: number): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/games_store/${id}/buy`, {});
+  }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GameService } from '../../../services/api/game/game';
 import { ActivatedRoute } from '@angular/router';
 import { map, Subscription, switchMap, forkJoin } from 'rxjs';
+import { UserService } from '../../../services/api/user/user';
 
 @Component({
   selector: 'app-game-details-layout',
@@ -15,7 +16,7 @@ export class GameDetailsLayoutComponent implements OnInit, OnDestroy {
   gameScreenshots: any[] = [];
   private routeSub: Subscription = new Subscription();
 
-  constructor(private gameService: GameService, private route: ActivatedRoute) { }
+  constructor(private gameService: GameService, private userService: UserService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     window.scrollTo({
@@ -57,9 +58,10 @@ export class GameDetailsLayoutComponent implements OnInit, OnDestroy {
 
   // Comprar jogo pelo ID
   public buyGame(id: number) {
-    this.gameService.buyGame(id).subscribe({
-      next: (data) => {
-        window.alert(data.title + " comprado com sucesso!");
+    this.userService.buyGame(id).subscribe({
+      next: () => {
+        window.alert("Jogo comprado com sucesso!");
+        window.document.querySelector('.btn-buy')!.innerHTML = "✅ Comprado";
       },
       error: (err) => {
         console.error('Erro ao comprar jogo:', err);

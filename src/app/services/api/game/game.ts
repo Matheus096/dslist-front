@@ -21,11 +21,6 @@ export class GameService {
     return this.http.get<Game>(`${this.baseUrl}/${id}`);
   }
 
-  // Comprar jogo pelo id
-  buyGame(id: number): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/${id}/buy`, {});
-  }
-
   searchGameByTitle(title: string): Observable<Game[]> {
     const params = new HttpParams().set('title', title);
     return this.http.get<Game[]>(this.baseUrl, { params });
