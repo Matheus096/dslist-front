@@ -8,21 +8,34 @@
   </li>
 </ul>
 
-<form class="list-options" (change)="onListChange($event)">
-  <label>
-    <input type="radio" name="preferencia" value="1">
-    Aventura e RPG
-  </label><br>
-
-  <label>
-    <input type="radio" name="preferencia" value="2">
-    Jogos de plataforma
-  </label><br>
-
-  <label>
-    <input type="radio" name="preferencia" value="3">
-    Todos
-  </label>
-</form>
-
 <button class="btn-voltar" (click)="goToHome()">Voltar</button>
+
+
+<!-- antes era por aqui que era usado o formulário para selecionar a lista de jogos a ser exibida, mas agora esse formulário foi movido para o Navbar,
+  já que a seleção da lista de jogos é uma funcionalidade global que afeta várias partes do aplicativo, e não apenas a GameListLayout. 
+  Dessa forma, faz mais sentido que essa funcionalidade esteja no Navbar, onde o usuário pode acessá-la facilmente de qualquer página do aplicativo. 
+  Além disso, ao mover o formulário para o Navbar, podemos usar o GameStateService para compartilhar o estado da lista selecionada entre os componentes, 
+  garantindo que a GameListLayout seja atualizada corretamente sempre que o usuário selecionar uma nova lista no Navbar.
+  E agora como essa obtenção de lista está sendo feita no Navbar, posso pegar o ID da lista selecionada tambem do componente game-store-layout, utilizando o GameStateService,
+  não ficando dessa forma essa obtenção restrita apenas ao game-list-layout. -->
+
+<!--  
+
+  <form class="list-options" (change)="onListChange($event)">
+    <label>
+      <input type="radio" name="preferencia" value="1">
+      Aventura e RPG
+    </label><br>
+
+    <label>
+      <input type="radio" name="preferencia" value="2">
+      Jogos de plataforma
+    </label><br>
+
+    <label>
+      <input type="radio" name="preferencia" value="3">
+      Todos
+    </label>
+  </form>
+
+-->

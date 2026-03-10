@@ -6,6 +6,7 @@ import { GameService } from '../../../services/api/game/game';
 import { Subject, debounceTime, distinctUntilChanged, switchMap, of, Observable } from 'rxjs';
 import { Game } from '../../../core/models/game/game.model';
 import { StringUtils } from '../../../utils/string-utils';
+import { GameStateService } from '../../../services/ui/game-state.service';
 
 @Component({
   selector: 'app-navbar',
@@ -17,12 +18,14 @@ import { StringUtils } from '../../../utils/string-utils';
 export class Navbar implements OnInit {
   private searchTerms = new Subject<string>();
   public games$!: Observable<Game[]>;
+  isCategoryMenuOpen = false;
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private gameService: GameService
+    private gameService: GameService,
+    private gameState: GameStateService
   ) {}
 
   ngOnInit(): void {
@@ -68,6 +71,10 @@ export class Navbar implements OnInit {
     }
   }
 
+  toggleCategoryMenu() {
+    this.isCategoryMenuOpen = !this.isCategoryMenuOpen;
+  }
+
   public clearSearch(searchBox: HTMLInputElement): void {
     searchBox.value = '';
     this.searchTerms.next('');
@@ -75,5 +82,12 @@ export class Navbar implements OnInit {
 
   public getSlug(title: string): string {
     return StringUtils.transformarEmSlug(title);
+  }
+
+  public onListChange(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    const listId = Number(target.value);
+
+    this.gameState.changeList(listId);
   }
 }

@@ -33,6 +33,25 @@ $mobile-breakpoint: 768px;
         text-decoration: none;
     }
 
+    .menu-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 456px;
+        background: white;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        z-index: 1901;
+        display: flex;
+        flex-direction: column;
+    
+        a {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            &:hover { color: $primary-color; }
+        }
+    }
+
     .overlay {
         position: fixed;
         top: 0;
@@ -42,6 +61,30 @@ $mobile-breakpoint: 768px;
         background-color: rgba(0, 0, 0, 0.6);
         z-index: 900;
         backdrop-filter: blur(5px);
+    }
+
+    .overlay-categories {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(19, 19, 19, 0.6);
+        z-index: 1900;
+        backdrop-filter: blur(5px);
+    }
+
+    .category-btn {
+        transition: all 0.3s ease;
+    }
+    
+    // Essa classe será injetada pelo Angular apenas quando o menu abrir
+    .active-link {
+        position: relative;
+        z-index: 10001 !important;
+        border-radius: 3px;
+        padding: 20px;
+        background-color: white;
     }
 
     // Campo de busca
@@ -116,6 +159,7 @@ $mobile-breakpoint: 768px;
 
     // Links de navegação
     .nav-links {
+        position: relative;
         display: flex;
         
         a {

@@ -24,9 +24,32 @@
     <nav class="nav-links">
         <a style="cursor: pointer;" (click)="goToGamesStore()">Loja</a>
         <a style="cursor: pointer;" (click)="goToGames()">Meus Jogos</a>
-        <a href="#">Pamonha</a>
+        <a style="cursor: pointer;" class="category-btn" [ngClass]="{'active-link': isCategoryMenuOpen}" (click)="toggleCategoryMenu()">Categorias</a>
         <a href="#">Maracuja</a>
     </nav>
+
+    <div class="overlay-categories" *ngIf="isCategoryMenuOpen" (click)="toggleCategoryMenu()"></div>
+
+    <div class="menu-dropdown" *ngIf="isCategoryMenuOpen">
+        <form class="list-options" (change)="onListChange($event)">
+            <label style="padding: 5px 2px;">
+                <input type="radio" name="preferencia" value="3">
+                Todos
+            </label><br>
+            <label style="padding: 5px 2px;">
+                <input type="radio" name="preferencia" value="2">
+                Plataforma
+            </label><br>
+            <label style="padding: 5px 2px;">
+                <input type="radio" name="preferencia" value="1">
+                Aventura
+            </label><br>
+            <label style="padding: 5px 2px;">
+                <input type="radio" name="preferencia" value="4">
+                RPG
+            </label>
+        </form>
+    </div>
     
     <div class="menu-toggle">
         <i class="fa fa-bars"></i>
