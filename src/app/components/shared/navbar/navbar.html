@@ -1,5 +1,5 @@
 <header class="navbar">
-    <a href="#" class="logo">DSList</a>
+    <a [routerLink]="['/home']" class="logo">DSList</a>
 
     @if (isFocus) {
         <div class="overlay" (click)="toggleFocus(false, buscaInput)"></div>
