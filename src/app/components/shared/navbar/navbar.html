@@ -12,11 +12,11 @@
         
         <ul class="search-results" *ngIf="isFocus && (games$ | async) as games">
             @for (game of games; track game.id) {
-            <li>
-                <a [routerLink]="['/game_details', game.id, getSlug(game.title)]" (click)="clearSearch(buscaInput)">
-                    {{ game.title }}
-                </a>
-            </li>
+                <li>
+                    <a [routerLink]="['/game_details', game.id, getSlug(game.title)]" (click)="clearSearch(buscaInput)">
+                        {{ game.title }}
+                    </a>
+                </li>
             }
         </ul>
     </div>
