@@ -37,10 +37,10 @@
             <div class="rating">⭐⭐⭐⭐☆ <span>4.0 / 5.0</span></div>
             <p class="description"> {{ gameDetails.shortDescription }} </p>
 
-            <div (click)="buyGame(gameDetails.id)" class="buy-card">
+            <div class="buy-card">
                 <p>Preço</p>
                 <h2 class="price">R$ {{ gameDetails.price }}</h2>
-                <button class="btn-buy">🛒 Adicionar à Biblioteca</button>
+                <button class="btn-buy" (click)="buyGame(gameDetails.id)" >🛒 Adicionar à Biblioteca</button>
             </div>
         </section>
     </main>
