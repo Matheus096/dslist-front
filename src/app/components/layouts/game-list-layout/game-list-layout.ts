@@ -47,6 +47,13 @@ export class GameListLayoutComponent implements OnInit {
   private callGameStateChange(): void {
     this.gameState.currentList$.subscribe(currentListId => {
       this.listId = currentListId;
+
+      // kkkkkkk criminoso
+      if (currentListId == 4) {
+        this.listId = 1;
+        this.gameState.changeList(this.listId);
+      }
+
       this.loadGames(currentListId);
     });
   }
