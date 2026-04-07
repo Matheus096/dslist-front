@@ -37,11 +37,35 @@
 
 /* Estilos de Texto */
 .badge {
-    background: #0ea5e9;
-    padding: 4px 12px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    font-weight: bold;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: white;
+  margin-right: 6px;
+}
+
+.badge.rpg {
+  background: #8b5cf6;
+}
+
+.badge.shooter {
+  background: #ef4444;
+}
+
+.badge.adventure {
+  background: #22c55e;
+}
+
+.badge.platform {
+  background: #4e8cf0;
+}
+
+.badge.sports {
+  background: #f59e0b;
+}
+
+.badge.default {
+  background: #64748b;
 }
 
 .buy-card {

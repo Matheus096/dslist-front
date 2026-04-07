@@ -48,7 +48,7 @@ export class GameListLayoutComponent implements OnInit {
     this.gameState.currentList$.subscribe(currentListId => {
       this.listId = currentListId;
 
-      // kkkkkkk criminoso
+      // kkkkkkk criminoso, fazendo algo muito feio pra quando o ListId for 4, ele volte pra 1 (Aventura e RPG), pq o backend não tem a lista 4 (RPG), e isso é só pra não mostrar a tela de jogos rpg vazio, kkkkkk
       if (currentListId == 4) {
         this.listId = 1;
         this.gameState.changeList(this.listId);

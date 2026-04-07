@@ -31,7 +31,7 @@
         </section>
 
         <section class="info-container">
-            <span class="badge">Corrida</span>
+            <span class="badge" *ngFor="let genre of getGenres(gameDetails.genre)" [ngClass]="getGenreClass(genre)">{{ genre }}</span>
             <h1 class="game-title"> {{ gameDetails.title}} </h1>
             <p class="year">📅 {{ gameDetails.year }}</p>
             <div class="rating">⭐⭐⭐⭐☆ <span>4.0 / 5.0</span></div>

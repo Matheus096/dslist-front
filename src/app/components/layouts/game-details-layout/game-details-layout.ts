@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { GameService } from '../../../services/api/game/game';
 import { ActivatedRoute } from '@angular/router';
 import { map, Subscription, switchMap, forkJoin } from 'rxjs';
@@ -6,7 +7,8 @@ import { UserService } from '../../../services/api/user/user';
 
 @Component({
   selector: 'app-game-details-layout',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './game-details-layout.html',
   styleUrl: './game-details-layout.scss'
 })
@@ -68,5 +70,21 @@ export class GameDetailsLayoutComponent implements OnInit, OnDestroy {
         window.alert("Erro ao comprar o jogo.");
       }
     });
+  }
+
+  public getGenres(genres: string): string[] {
+    return genres.split(',').map(g => g.trim());
+  }
+
+  public getGenreClass(genre: string): string {
+    const normalized = genre.toLowerCase();
+
+    if (normalized.includes('rpg')) return 'rpg';
+    if (normalized.includes('shooter')) return 'shooter';
+    if (normalized.includes('adventure')) return 'adventure';
+    if (normalized.includes('platform')) return 'platform';
+    if (normalized.includes('sports')) return 'sports';
+
+    return 'default';
   }
 }
