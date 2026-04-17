@@ -16,6 +16,8 @@ export class GameDetailsLayoutComponent implements OnInit, OnDestroy {
 
   gameDetails: any;
   gameScreenshots: any[] = [];
+  reviewsList: any[] = [];
+  isLoadingReviews: boolean = false;
   private routeSub: Subscription = new Subscription();
 
   constructor(private gameService: GameService, private userService: UserService, private route: ActivatedRoute) { }
@@ -46,6 +48,10 @@ export class GameDetailsLayoutComponent implements OnInit, OnDestroy {
       next: (res) => {
         this.gameDetails = res.details;
         this.gameScreenshots = res.screenshots.slice(-3);
+
+        if (this.gameDetails && this.gameDetails.rawgId) {
+          this.getGameReviews(); 
+        }
 
         console.log('Detalhes:', res.details);
         console.log('Screenshots:', res.screenshots);
@@ -86,5 +92,24 @@ export class GameDetailsLayoutComponent implements OnInit, OnDestroy {
     if (normalized.includes('sports')) return 'sports';
 
     return 'default';
+  }
+
+  public getGameReviews(): void {
+    const rawgId = this.gameDetails?.rawgId;
+
+    if (rawgId) {
+      this.isLoadingReviews = true;
+
+      this.gameService.getReviewsById(rawgId).subscribe({
+        next: (reviews) => {
+          this.reviewsList = reviews; 
+          this.isLoadingReviews = false;
+        },
+        error: (err) => {
+          console.error('Erro ao carregar reviews:', err)
+          this.isLoadingReviews = false;
+        }
+      });
+    }
   }
 }

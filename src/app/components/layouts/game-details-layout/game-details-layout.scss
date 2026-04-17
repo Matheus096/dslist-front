@@ -215,16 +215,16 @@
 /* Container da lista para alinhar com a largura da comment-box */
 .reviews-list {
     max-width: 1100px; 
-    padding: 0 20px;
+    padding: 0 40px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 0px 3px 1px;
-    margin: 12px 40px;
+    margin: 14px 40px;
     border-radius: 8px;
     margin-bottom: 60px;
 }
 
 .review-card-modern {
     background: #ffffff;
-    border-bottom: 1px solid #f1f5f9; 
+    border-bottom: 1px solid #d1d6da; 
     padding: 25px 0; 
     margin-bottom: 10px;
     transition: all 0.2s ease;
@@ -258,7 +258,7 @@
 
 .review-date {
     font-size: 0.85rem;
-    color: #94a3b8;
+    color: #646f7e;
 }
 
 /* Texto do Comentário */
@@ -268,6 +268,15 @@
     margin: 0 0 15px 0;
     font-size: 1rem;
     max-width: 90%; 
+
+    ::ng-deep img {
+        max-width: 100% !important; 
+        height: auto !important;
+        display: block;
+        margin: 15px 0;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
 }
 
 .btn-useful {
@@ -294,6 +303,36 @@
 
 .btn-useful .icon {
     font-size: 1rem;
+}
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  gap: 15px;
+
+  p {
+    color: #666;
+    font-size: 0.9rem;
+    font-family: sans-serif;
+  }
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1); 
+  border-left-color: #673ab7;          
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* RESPONSIVIDADE (Mobile) */

@@ -70,27 +70,35 @@
             </div>
         </div>
 
-        <div class="reviews-list">
-            <div class="review-card-modern">
+        <div class="reviews-list" *ngIf="reviewsList && reviewsList.length > 0">
+            <div class="review-card-modern" *ngFor="let review of reviewsList">
                 <div class="card-top">
                     <div class="user-info">
-                        <span class="user-name">João Silva</span>
-                        <span class="stars-static">★★★★★</span>
+                        <span class="user-name">{{ review.user?.username || 'Gamer' }}</span>
+                        <span class="stars-static" *ngIf="review.rating">
+                            {{ '★'.repeat(review.rating) }}
+                        </span>
                     </div>
-                    <span class="review-date">15 de Janeiro, 2024</span>
+                    <span class="review-date">{{ review.created | date:'dd de MMMM, yyyy' }}</span>
                 </div>
 
-                <p class="comment-text">
-                    Simplesmente incrível! Um dos melhores jogos que já joguei.
-                    A jogabilidade é fluida e os gráficos estão impecáveis.
-                </p>
+                <p class="comment-text" [innerHTML]="review.text"></p>
 
                 <div class="card-actions">
                     <button class="btn-useful">
-                        <span class="icon">👍</span> Útil (234)
+                        <span class="icon">👍</span> Útil ({{ review.likes_count || 0 }})
                     </button>
                 </div>
             </div>
+        </div>
+
+        <div class="loader-container" *ngIf="isLoadingReviews">
+            <div class="spinner"></div>
+                <p>Buscando avaliações...</p>
+            </div>
+
+        <div class="reviews-list" *ngIf="!isLoadingReviews && reviewsList.length === 0">
+            <p style="color: gray; text-align: center;">Nenhuma avaliação encontrada para este jogo.</p>
         </div>
     </section>
 </div>
