@@ -8,3 +8,38 @@
 *::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Edge */
 }
+
+:root {
+  --bg-color-breu: #fbfbff;
+  --card-bg-breu: #ffffff;
+  --text-color-breu: #333333;
+  --accent-breu: #6200ee;
+  --nav-bg-color: rgba(255, 255, 255, 0.855);
+}
+
+[data-theme="dark"] {
+  --bg-color-breu: #21273f;
+  --card-bg-breu: #343e5f;
+  --text-color-breu: #e7e7e7;
+  --accent-breu: #bb86fc;
+  --nav-bg-color: rgba(50, 58, 94, 0.8);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--bg-color-breu);
+  color: var(--text-color-breu);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--bg-color-breu);
+  color: var(--text-color-breu);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

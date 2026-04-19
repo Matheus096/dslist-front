@@ -7,6 +7,7 @@ import { Subject, debounceTime, distinctUntilChanged, switchMap, of, Observable 
 import { Game } from '../../../core/models/game/game.model';
 import { StringUtils } from '../../../utils/string-utils';
 import { GameStateService } from '../../../services/ui/game-state.service';
+import { ThemeService } from '../../../services/ui/theme-service.service';
 
 @Component({
   selector: 'app-navbar',
@@ -19,14 +20,18 @@ export class Navbar implements OnInit {
   private searchTerms = new Subject<string>();
   public games$!: Observable<Game[]>;
   isCategoryMenuOpen = false;
+  isDark: boolean = false;
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
     private gameService: GameService,
-    private gameState: GameStateService
-  ) {}
+    private gameState: GameStateService,
+    private themeService: ThemeService
+  ) {
+    this.isDark = this.themeService.isDarkMode();
+  }
 
   ngOnInit(): void {
     this.games$ = this.searchTerms.pipe(
@@ -89,5 +94,10 @@ export class Navbar implements OnInit {
     const listId = Number(target.value);
 
     this.gameState.changeList(listId);
+  }
+
+  toggleTheme() {
+    this.isDark = !this.isDark;
+    this.themeService.updateTheme(this.isDark ? 'dark' : 'light');
   }
 }

@@ -25,7 +25,9 @@
         <a style="cursor: pointer;" (click)="goToGamesStore()">Loja</a>
         <a style="cursor: pointer;" (click)="goToGames()">Meus Jogos</a>
         <a style="cursor: pointer;" class="category-btn" [ngClass]="{'active-link': isCategoryMenuOpen}" (click)="toggleCategoryMenu()">Categorias</a>
-        <a href="#">Maracuja</a>
+        <button class="theme-toggle" (click)="toggleTheme()">
+            {{ isDark ? '☀️' : '🌙' }}
+        </button>
     </nav>
 
     <div class="overlay-categories" *ngIf="isCategoryMenuOpen" (click)="toggleCategoryMenu()"></div>
