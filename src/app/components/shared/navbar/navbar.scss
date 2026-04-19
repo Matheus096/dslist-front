@@ -16,7 +16,7 @@ $mobile-breakpoint: 768px;
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem 2rem;
-    background-color: rgba(255, 255, 255, 0.855);
+    background-color: var(--nav-bg-color);
     box-shadow: 0 2px 5px $shadow-color;
     margin-bottom: 20px;
     position: sticky;
@@ -34,10 +34,11 @@ $mobile-breakpoint: 768px;
     }
 
     .menu-dropdown {
+        color: var(--text-color-breu);
         position: absolute;
         top: 100%;
         right: 456px;
-        background: white;
+        background: var(--card-bg-breu);
         padding: 1rem;
         border-radius: 8px;
         box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -84,7 +85,16 @@ $mobile-breakpoint: 768px;
         z-index: 10001 !important;
         border-radius: 3px;
         padding: 20px;
-        background-color: white;
+        background-color: var(--card-bg-breu);
+    }
+
+    .theme-toggle {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        color: var(--text-color-breu);
+        margin-left: 1rem;
     }
 
     // Campo de busca
@@ -165,12 +175,12 @@ $mobile-breakpoint: 768px;
         display: flex;
         
         a {
-            color: $text-color;
+            color: var(--text-color-breu);
             text-decoration: none;
             padding: 0 1rem;
             @include transition(color);
             &:hover {
-                color: $primary-color;
+                color: var(--primary-color);
             }
         }
     }
@@ -180,7 +190,7 @@ $mobile-breakpoint: 768px;
         display: none; // Esconde o botão por padrão
         font-size: 1.5rem;
         cursor: pointer;
-        color: $text-color;
+        color: var(--text-color-breu);
     }
 }
 

@@ -29,6 +29,7 @@
 }
 
 .info-container {
+    background-color: var(--card-bg-breu);
     margin: -20px -5px;
     padding: 40px;
     border-radius: 7px;
@@ -103,7 +104,7 @@
 /* Comentários */
 /* Container Principal */
 .comment-box {
-    background: #ffffff;
+    background: var(--card-bg-breu);
     border: 1px solid #e2e8f0;
     border-radius: 12px;
     padding: 20px 30px;
@@ -123,7 +124,7 @@
 
 .comment-input-header h4 {
     margin: 0;
-    color: #1e293b;
+    color: var(--text-color-breu);
     font-weight: 600;
 }
 
@@ -136,7 +137,7 @@
 
 .star-rating-wrapper label {
     font-size: 14px;
-    color: #64748b;
+    color: var(--text-color-breu);
 }
 
 /* Lógica de Estrelas Interativas */
@@ -166,12 +167,12 @@
 .modern-textarea {
     width: 100%;
     min-height: 120px;
-    background: #f8fafc;
+    background: var(--card-bg-breu);
     border: 1px solid #e2e8f0;
     border-radius: 8px;
     padding: 16px;
     font-size: 15px;
-    color: #334155;
+    color: var(--text-color-breu);
     resize: vertical;
     box-sizing: border-box;
     transition: all 0.2s ease;
@@ -179,7 +180,7 @@
 
 .modern-textarea:focus {
     outline: none;
-    background: #fff;
+    background: var(#353f5f);
     border-color: #94a3b8;
     box-shadow: 0 0 0 4px rgba(226, 232, 240, 0.4);
 }
@@ -193,7 +194,7 @@
 }
 
 .comment-footer small {
-    color: #94a3b8;
+    color: var(--text-color-breu);
 }
 
 .btn-primary-gradient {
@@ -214,6 +215,7 @@
 
 /* Container da lista para alinhar com a largura da comment-box */
 .reviews-list {
+    background-color: var(--card-bg-breu);
     max-width: 1100px; 
     padding: 0 40px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 0px 3px 1px;
@@ -223,7 +225,7 @@
 }
 
 .review-card-modern {
-    background: #ffffff;
+    background-color: var(--card-bg-breu);
     border-bottom: 1px solid #d1d6da; 
     padding: 25px 0; 
     margin-bottom: 10px;
@@ -246,7 +248,7 @@
 
 .user-name {
     font-weight: 700;
-    color: #1e293b;
+    color: var(--text-color-breu);
     font-size: 1.05rem;
 }
 
@@ -258,13 +260,13 @@
 
 .review-date {
     font-size: 0.85rem;
-    color: #646f7e;
+    color: var(--text-color-breu);
 }
 
 /* Texto do Comentário */
 .comment-text {
     line-height: 1.6;
-    color: #475569;
+    color: var(--text-color-breu);
     margin: 0 0 15px 0;
     font-size: 1rem;
     max-width: 90%; 
