@@ -16,10 +16,11 @@ export class RegisterComponentLayout {
 
   username: string = '';
   password: string = '';
+  email: string = '';
   constructor(private authService: AuthService, private router: Router) {}
 
   public register() {
-    this.authService.register(this.username, this.password).subscribe({
+    this.authService.register(this.username, this.email, this.password).subscribe({
       next: (res) => {
         alert(res);
         this.router.navigate(['/login']); // redireciona para login após registrar
