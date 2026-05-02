@@ -13,13 +13,13 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./login-layout.scss']
 })
 export class LoginComponentLayout {
-  username = '';
   password = '';
+  email = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   public login() {
-    this.authService.login(this.username, this.password).subscribe({
+    this.authService.login(this.email, this.password).subscribe({
       next: response => {
         const token = response.token;
         this.authService.saveToken(token);

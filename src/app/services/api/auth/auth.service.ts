@@ -17,14 +17,14 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  // Envia requisição de login com username e password no body
-  login(username: string, password: string): Observable<AuthModel> {
-    return this.http.post<AuthModel>(this.apiUrl + '/login', { username, password });
+  // Envia requisição de login com email e password no body
+  login(email: string, password: string): Observable<AuthModel> {
+    return this.http.post<AuthModel>(this.apiUrl + '/login', { email, password });
   }
 
-  // Envia requisição de registro com username e password no body
-  register(username: string, password: string) {
-    return this.http.post(this.apiUrl + '/register', { username, password }, { responseType: 'text' });
+  // Envia requisição de registro com username, password e email no body
+  register(username: string, email: string, password: string) {
+    return this.http.post(this.apiUrl + '/register', { username, email, password }, { responseType: 'text' });
   }
 
   saveToken(token: string) {
