@@ -19,6 +19,25 @@ export class RegisterComponentLayout {
   email: string = '';
   constructor(private authService: AuthService, private router: Router) {}
 
+  private formatErrorMessage(err: any): string {
+    let body = err.error;
+
+    // Converte string JSON para objeto se necessário
+    if (typeof body === 'string') {
+      try { 
+        body = JSON.parse(body); 
+      } catch { 
+        return body || "Erro desconhecido"; 
+      }
+    }
+
+    if (Array.isArray(body)) {
+      return body.map(e => e.message).join('\n');
+    }
+
+    return body?.message || body || "Erro inesperado ao processar requisição.";
+  }
+
   public register() {
     this.authService.register(this.username, this.email, this.password).subscribe({
       next: (res) => {
@@ -26,7 +45,8 @@ export class RegisterComponentLayout {
         this.router.navigate(['/login']); // redireciona para login após registrar
       },
       error: (err) => {
-        alert(err.error);
+        const errorMessage = this.formatErrorMessage(err);
+        alert(`Erro ao registrar: ${errorMessage}`);
       }
     });
   }
