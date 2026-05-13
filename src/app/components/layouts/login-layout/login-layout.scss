@@ -18,12 +18,12 @@ $border-radius: 10px;
   align-items: flex-start;
   height: 100vh;
   background-color: $secondary-color;
-  padding-top: 11%;
+  padding-top: 10%;
 }
 
 .conteudo {
   background-color: white;
-  padding: 40px 30px;
+  padding: 40px 30px 35px 30px;
   border-radius: $border-radius;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   width: 100%;
@@ -117,5 +117,45 @@ $border-radius: 10px;
         text-decoration: underline;
       }
     }
+  }
+
+  .social-connect {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    justify-content: center;
+    text-align: center;
+    width: 100%;         
+    margin-top: 20px
+  }
+
+  .social-connect span {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    color: rgb(48, 48, 48);
+    margin-bottom: 10px; 
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .icon { 
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+    background: #ea4335; 
+    color: white; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+
+  .icon:hover {
+    transform: scale(1.1);
   }
 }

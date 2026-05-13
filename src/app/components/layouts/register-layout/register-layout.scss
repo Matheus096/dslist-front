@@ -48,12 +48,16 @@
 .social-icons { margin-top: 15px; display: flex; justify-content: center; gap: 15px; }
 
 .icon { 
-    width: 35px; height: 35px; border-radius: 50%; background: #3b5998; 
+    width: 41px; height: 35px; padding: 20px; border-radius: 50%; background: #3b5998; 
     color: white; display: flex; align-items: center; justify-content: center; text-decoration: none;
 }
 
+.icon:hover {
+    transform: scale(1.1);
+  }
+
 .icon.twitter { background: #55acee; }
-.icon.google { background: #dd4b39; }
+.icon.google { background: #ea4335; }
 
 .form-panel {
     flex: 1.2;
