@@ -16,6 +16,16 @@ export class App implements OnInit {
 
   ngOnInit() {
     this.themeService.initTheme();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+
+    if (token) {
+      localStorage.setItem('token', token);
+      console.log('Token salvo pelo AppComponent!');
+      // Agora que o token está no storage, o Guard vai deixar passar
+      this.router.navigate(['/home']);
+    }
   }
 
   goToGames() {
