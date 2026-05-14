@@ -6,13 +6,14 @@ import { Router } from '@angular/router';
 import { UserService } from '../../../services/api/user/user';
 import { AuthService } from '../../../services/api/auth/auth.service';
 import { GameStateService } from '../../../services/ui/game-state.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-game-list-layout',
   standalone: true,
   templateUrl: './game-list-layout.html',
   styleUrls: ['./game-list-layout.scss'],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
 })
 export class GameListLayoutComponent implements OnInit {
   games: any[] = [];
