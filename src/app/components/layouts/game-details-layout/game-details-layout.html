@@ -79,7 +79,7 @@
                             {{ '★'.repeat(review.rating) }}
                         </span>
                     </div>
-                    <span class="review-date">{{ review.created | date:'dd de MMMM, yyyy' }}</span>
+                    <span class="review-date">{{ review.created | date:'MMM d, yyyy' }}</span>
                 </div>
 
                 <p class="comment-text" [innerHTML]="review.text"></p>
