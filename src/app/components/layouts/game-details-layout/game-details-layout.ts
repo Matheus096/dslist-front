@@ -5,10 +5,15 @@ import { ActivatedRoute } from '@angular/router';
 import { map, Subscription, switchMap, forkJoin } from 'rxjs';
 import { UserService } from '../../../services/api/user/user';
 
+// Importações necessárias para o formulário
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ReviewService } from '../../../services/api/reviews/review';
+import { ReviewDTO } from '../../../core/models/reviewDTO/review.model';
+
 @Component({
   selector: 'app-game-details-layout',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './game-details-layout.html',
   styleUrl: './game-details-layout.scss'
 })
@@ -18,9 +23,14 @@ export class GameDetailsLayoutComponent implements OnInit, OnDestroy {
   gameScreenshots: any[] = [];
   reviewsList: any[] = [];
   isLoadingReviews: boolean = false;
+
+  // Propriedades para o controle do formulário local
+  reviewForm!: FormGroup;
+  currentRating: number = 0;
+  starsArray = [1, 2, 3, 4, 5];
   private routeSub: Subscription = new Subscription();
 
-  constructor(private gameService: GameService, private userService: UserService, private route: ActivatedRoute) { }
+  constructor(private gameService: GameService, private userService: UserService, private reviewService: ReviewService, private route: ActivatedRoute, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     window.scrollTo({
@@ -29,7 +39,53 @@ export class GameDetailsLayoutComponent implements OnInit, OnDestroy {
       behavior: 'instant'
     });
 
+    this.initForm();
     this.searchGameByIdUrl();
+  }
+
+  // Inicializa o formulário com validações básicas
+  private initForm(): void {
+    this.reviewForm = this.formBuilder.group({
+      text: ['', [Validators.required, Validators.minLength(5)]],
+      rating: [0, [Validators.required, Validators.min(1)]]
+    });
+  }
+
+  // Define a nota quando clicar nas estrelas
+  public selectRating(starClicked: number): void {
+
+    const realRating = 6 - starClicked; 
+    this.currentRating = realRating;
+    
+    this.reviewForm.patchValue({ rating: realRating });
+  }
+
+  // Enviar a nova avaliação para o back
+  public submitReview(): void {
+    if (this.reviewForm.valid && this.gameDetails) {
+      const newReview: ReviewDTO = {
+        gameId: this.gameDetails.id,
+        text: this.reviewForm.value.text,
+        rating: this.reviewForm.value.rating
+      };
+
+      this.reviewService.insert(newReview).subscribe({
+        next: (response) => {
+          window.alert('Avaliação enviada com sucesso!');
+          
+          // Limpa o formulário na tela
+          this.reviewForm.reset({ text: '', rating: 0 });
+          this.currentRating = 0;
+          
+          // Recarrega as reviews da tela para mostrar o novo comentário
+          this.getGameReviews();
+        },
+        error: (err) => {
+          console.error('Erro ao salvar review:', err);
+          window.alert('Erro ao enviar avaliação. Verifique se está logado.');
+        }
+      });
+    }
   }
 
   private searchGameByIdUrl(): void {
@@ -94,19 +150,48 @@ export class GameDetailsLayoutComponent implements OnInit, OnDestroy {
     return 'default';
   }
 
+  // O getGameReviews() agora além de buscar as reviews que vinham da RAWG, também busca as reviews locais do meu banco em paralelo
   public getGameReviews(): void {
     const rawgId = this.gameDetails?.rawgId;
+    const localId = this.gameDetails?.id;
 
-    if (rawgId) {
+    if (rawgId && localId) {
       this.isLoadingReviews = true;
 
-      this.gameService.getReviewsById(rawgId).subscribe({
-        next: (reviews) => {
-          this.reviewsList = reviews; 
+      forkJoin({
+        rawgReviews: this.gameService.getReviewsById(rawgId),
+        localReviews: this.reviewService.findByGame(localId)
+      }).subscribe({
+        next: (res) => {
+          // Mapeia e padroniza os dados da RAWG
+          const mappedRawg = res.rawgReviews.map((c: any) => ({
+            id: c.id,
+            author: c.user?.username || 'Anônimo',
+            text: c.text,
+            rating: c.rating,
+            createdAt: c.created,
+            origin: 'rawg'
+          }));
+
+          // Mapeia e padroniza os dados do meu banco
+          const mappedLocal = res.localReviews.map((c: any) => ({
+            id: c.id,
+            author: c.userName || 'Membro da Comunidade',
+            text: c.text,
+            rating: c.rating,
+            createdAt: c.createdAt,
+            origin: 'local'
+          }));
+
+          // Junta tudo e ordena pela data mais recente
+          this.reviewsList = [...mappedLocal, ...mappedRawg].sort(
+            (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          );
+
           this.isLoadingReviews = false;
         },
         error: (err) => {
-          console.error('Erro ao carregar reviews:', err)
+          console.error('Erro ao carregar reviews:', err);
           this.isLoadingReviews = false;
         }
       });

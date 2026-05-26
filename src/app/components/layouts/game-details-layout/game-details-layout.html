@@ -46,40 +46,55 @@
     </main>
 
     <section class="reviews-section">
-        <div class="comment-box">
+        <div class="comment-box" [formGroup]="reviewForm">
             <div class="comment-input-header">
                 <h4 style="font-weight: 400;">Deixe sua avaliação</h4>
                 <div class="star-rating-wrapper">
                     <label>Sua nota:</label>
                     <div class="stars-interative">
-                        <input type="radio" id="st5" name="fav_rating" value="5"><label for="st5">★</label>
-                        <input type="radio" id="st4" name="fav_rating" value="4"><label for="st4">★</label>
-                        <input type="radio" id="st3" name="fav_rating" value="3"><label for="st3">★</label>
-                        <input type="radio" id="st2" name="fav_rating" value="2"><label for="st2">★</label>
-                        <input type="radio" id="st1" name="fav_rating" value="1"><label for="st1">★</label>
+                        <span *ngFor="let star of starsArray" 
+                              (click)="selectRating(star)"
+                              class="star-clickable"
+                              [class.filled]="(6 - star) <= currentRating">
+                            ★
+                        </span>
                     </div>
                 </div>
             </div>
 
-            <textarea placeholder="O que você achou do jogo? Seu feedback ajuda a comunidade..."
-                class="modern-textarea"></textarea>
+            <textarea 
+                formControlName="text"
+                placeholder="O que você achou do jogo? Seu feedback ajuda a comunidade..."
+                class="modern-textarea">
+            </textarea>
 
             <div class="comment-footer">
                 <small>Respeite as diretrizes da comunidade.</small>
-                <button class="btn-primary-gradient">Comentar</button>
+                <button 
+                    class="btn-primary-gradient" 
+                    (click)="submitReview()"
+                    [disabled]="reviewForm.invalid">
+                    Comentar
+                </button>
             </div>
         </div>
 
-        <div class="reviews-list" *ngIf="reviewsList && reviewsList.length > 0">
+        <div class="reviews-list" *ngIf="!isLoadingReviews && reviewsList && reviewsList.length > 0">
             <div class="review-card-modern" *ngFor="let review of reviewsList">
                 <div class="card-top">
                     <div class="user-info">
-                        <span class="user-name">{{ review.user?.username || 'Gamer' }}</span>
+                        <span class="user-name">
+                            {{ review.author }}
+                            <small class="origin-tag" [ngClass]="review.origin">
+                                {{ review.origin === 'local' ? 'Comunidade' : 'RAWG' }}
+                            </small>
+                        </span>
+                        
                         <span class="stars-static" *ngIf="review.rating">
                             {{ '★'.repeat(review.rating) }}
                         </span>
                     </div>
-                    <span class="review-date">{{ review.created | date:'MMM d, yyyy' }}</span>
+                    <span class="review-date">{{ review.createdAt | date:'MMM d, yyyy' }}</span>
                 </div>
 
                 <p class="comment-text" [innerHTML]="review.text"></p>
@@ -94,8 +109,8 @@
 
         <div class="loader-container" *ngIf="isLoadingReviews">
             <div class="spinner"></div>
-                <p>Buscando avaliações...</p>
-            </div>
+            <p>Buscando avaliações...</p>
+        </div>
 
         <div class="reviews-list" *ngIf="!isLoadingReviews && reviewsList.length === 0">
             <p style="color: gray; text-align: center;">Nenhuma avaliação encontrada para este jogo.</p>

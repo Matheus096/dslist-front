@@ -331,6 +331,43 @@
   animation: spin 1s linear infinite;
 }
 
+.stars-interative {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 2px;
+
+    .star-clickable {
+        font-size: 1.4rem;
+        cursor: pointer;
+        color: #444;
+        transition: color 0.15s ease-in-out;
+
+        &:hover,
+        &:hover ~ .star-clickable,
+        &.filled,
+        &.filled ~ .star-clickable {
+            color: #ffca28;
+        }
+    }
+}
+
+.origin-tag {
+    font-size: 0.65rem;
+    padding: 1px 5px;
+    border-radius: 4px;
+    margin-left: 6px;
+    font-weight: 600;
+    
+    &.local {
+        background-color: rgba(33, 150, 243, 0.15);
+        color: #2196f3;
+    }
+    &.rawg {
+        background-color: rgba(255, 255, 255, 0.08);
+        color: #8a8f9d;
+    }
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
