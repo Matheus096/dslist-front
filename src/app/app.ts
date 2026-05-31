@@ -23,6 +23,9 @@ export class App implements OnInit {
     if (token) {
       localStorage.setItem('token', token);
       console.log('Token salvo pelo AppComponent!');
+
+      window.history.replaceState({}, document.title, window.location.pathname); // Remove o token da URL após salvá-lo no localStorage
+
       // Agora que o token está no storage, o Guard vai deixar passar
       this.router.navigate(['/home']);
     }
