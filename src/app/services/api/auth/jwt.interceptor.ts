@@ -17,9 +17,9 @@ export class JwtInterceptor implements HttpInterceptor {
     const token = this.auth.getToken();
 
     // 🔹 Teste: log para verificar se o interceptor está sendo chamado
-    console.log('JwtInterceptor chamado!');
-    console.log('URL da requisição:', req.url);
-    console.log('Token atual:', token);
+    // console.log('JwtInterceptor chamado!');
+    // console.log('URL da requisição:', req.url);
+    // console.log('Token atual:', token);
 
     if (token) {
       const cloned = req.clone({
