@@ -46,7 +46,7 @@ export class GameDetailsLayoutComponent implements OnInit, OnDestroy {
   // Inicializa o formulário com validações básicas
   private initForm(): void {
     this.reviewForm = this.formBuilder.group({
-      text: ['', [Validators.required, Validators.minLength(5)]],
+      text: ['', [Validators.required, Validators.minLength(1)]],
       rating: [0, [Validators.required, Validators.min(1)]]
     });
   }
