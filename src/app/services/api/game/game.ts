@@ -7,7 +7,7 @@ import { Game, GameMin } from '../../../core/models/game/game.model';
   providedIn: 'root'
 })
 export class GameService {
-  private baseUrl = 'http://localhost:8080/games';
+  private baseUrl = 'https://dslist-61be.onrender.com/games';
 
   constructor(private http: HttpClient) {}
 
@@ -28,11 +28,11 @@ export class GameService {
 
   // Recebe screenshots por ID do jogo
   getScreenshotsById(id: number): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:8080/api/rawg/games/${id}/screenshots/meu_bd`);
+    return this.http.get<any[]>(`https://dslist-61be.onrender.com/api/rawg/games/${id}/screenshots/meu_bd`);
   }
 
   getReviewsById(id: number): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:8080/api/rawg/games/${id}/reviews`);
+    return this.http.get<any[]>(`https://dslist-61be.onrender.com/api/rawg/games/${id}/reviews`);
   }
 
   

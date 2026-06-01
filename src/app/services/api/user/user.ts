@@ -7,7 +7,7 @@ import { User } from '../../../core/models/user/user.model';
   providedIn: 'root'
 })
 export class UserService {
-  private baseUrl = 'http://localhost:8080/user';
+  private baseUrl = 'https://dslist-61be.onrender.com/user';
 
   constructor(private http: HttpClient) {}
 

@@ -8,7 +8,7 @@ import { ReviewDTO } from '../../../core/models/reviewDTO/review.model';
 })
 export class ReviewService {
   
-  private baseUrl = 'http://localhost:8080/reviews';
+  private baseUrl = 'https://dslist-61be.onrender.com/reviews';
 
   constructor(private http: HttpClient) { }
 
